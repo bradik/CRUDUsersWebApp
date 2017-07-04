@@ -1,0 +1,35 @@
+<br>
+<input type="text" ng-model="$ctrl.search.name" placeholder="Фильтр по имени"/>
+<table border="0" class="table-striped table-condensed table-hover">
+    <tr bgcolor="lightgray">
+        <td>id</td>
+        <td>Имя</td>
+        <td>Возвраст</td>
+        <td>Админ</td>
+        <td>Дата создания</td>
+        <td>Действие</td>
+    </tr>
+    <tr ng-repeat="user in $ctrl.filtered =($ctrl.users | filter:$ctrl.search:strict) | startFrom: $ctrl.startingItem() | limitTo: $ctrl.itemsPerPage">
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.age}}</td>
+        <td><input type="checkbox" ng-checked="user.admin" onclick="return false;"/></td>
+        <td>{{user.created | date:"MM/dd/yyyy 'at' h:mma"}}</td>
+        <td>
+            <button ng-click="$ctrl.edit(user.id)">Изменить</button>
+        </td>
+    </tr>
+    <tfoot>
+    <td colspan="6">
+        <div class="pagination pull-right">
+            <button ng-click="$ctrl.create()">Новый пользователь</button>
+
+            <button ng-disabled="$ctrl.firstPage()" ng-click="$ctrl.pageBack()">Назад</button>
+            <span>{{$ctrl.currentPage+1}} из {{$ctrl.numberOfPages()}}</span>
+            <button ng-disabled="$ctrl.lastPage()" ng-click="$ctrl.pageForward()">Вперед</button>
+        </div>
+    </td>
+    </tfoot>
+</table>
+
+

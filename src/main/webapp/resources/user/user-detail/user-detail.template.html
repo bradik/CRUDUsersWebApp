@@ -1,0 +1,33 @@
+<div ng-show="$ctrl.user.id">Пользователь:</div>
+<div ng-show="!$ctrl.user.id">Новый пользователь:</div>
+<br/>
+<table border="0">
+    <tr>
+        <td bgcolor="#d3d3d3">Имя:</td>
+        <td><input ng-model="$ctrl.user.name"/></td>
+    </tr>
+    <tr>
+        <td bgcolor="lightgray">Возвраст:</td>
+        <td><input ng-model="$ctrl.user.age"/></td>
+    </tr>
+    <tr>
+        <td bgcolor="#d3d3d3">Админ:</td>
+        <td><input type="checkbox" ng-model="$ctrl.user.admin" ng-checked="$ctrl.user.admin"/></td>
+    </tr>
+    <tr ng-show="!$ctrl.user.id">
+        <td>
+            <button ng-click="$ctrl.save()">Сохранить</button>
+        </td>
+        <td/>
+    </tr>
+    <tr ng-show="$ctrl.user.id">
+        <td>
+            <button ng-click="$ctrl.update()">Обновить</button>
+        </td>
+        <td>
+            <button ng-click="$ctrl.delete()">Удалить</button>
+        </td>
+    </tr>
+</table>
+
+
